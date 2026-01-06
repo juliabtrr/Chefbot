@@ -1,0 +1,410 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{titling}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{eso-pic}
+
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}
+\pagestyle{empty}
+
+\begin{document}
+
+\newcommand{\borduregauche}{
+\AddToShipoutPictureFG*{
+\put(-35,420){\includegraphics[height=\paperheight]{Template Latex pour rapport de projet L1/Bordure.png}}
+}
+}
+
+\borduregauche
+
+\begin{titlepage}
+
+\begin{center}
+\vspace*{1cm}
+\hspace*{-2cm}
+\includegraphics[width=9.5cm]{Template Latex pour rapport de projet L1/logo_Paris_Nanterre_couleur_RVB.png}
+\vspace{0.5cm}
+\noindent
+
+\begin{center}
+\vspace{0.0cm}
+\noindent
+\begin{center}
+{\Large Licence économie-gestion (CMI) – 2\textsuperscript{e} année}\\[0.8cm]
+
+{\Huge \textbf{Rapport de projet informatique}}\\[2.5cm]
+{\Huge \textit{Chefbot}}\\[1.9cm]
+
+{\Large Projet réalisé de septembre 2025 au 6 janvier 2026}\\[1.5cm]
+
+{\Large Membres du groupe :}\\[0.5cm]
+
+\begin{center}
+\begin{minipage}{0.3\textwidth}
+\centering
+\textit{Betour julia\\44001299}
+\end{minipage}
+\hfill
+\begin{minipage}{0.3\textwidth}
+\centering
+\textit{Sacko Fatoumata\\43005103}
+\end{minipage}
+\end{center}
+
+\vspace{1,5cm}
+\textit{Année universitaire 2025–2026} \\
+\href{}{Lien GitHub : https://github.com/juliabtrr/Chefbot} \\ \end{center}
+
+\end{titlepage}
+
+\newpage
+\thispagestyle{empty} % pas de numéro sur cette page
+
+
+\tableofcontents
+\vspace{1cm}
+\end{center}
+
+\newpage
+
+\section{Remerciements}
+
+Nous tenons à remercier toutes les personnes, collègues, familles et proches. qui
+ont cru en nous ainsi qu’en notre projet. Nous tenons également à remercier
+monsieur Bouquet pour son aide et ses conseils qui nous ont permis d’améliorer
+notre projet au maximum.
+
+
+\clearpage
+\section{Introduction}
+
+Avec l’évolution des technologies numériques et l’essor de l’intelligence artificielle
+générative, de nouvelles solutions émergent pour simplifier les tâches du quotidien. La
+cuisine, bien qu’ essentielle, représente souvent une contrainte pour de nombreuses
+personnes par manque de temps, d’inspiration ou de planification.
+Dans ce contexte, notre projet informatique consiste à concevoir une application web
+intégrant une intelligence artificielle générative capable d’assister les utilisateurs dans la
+création de recettes de cuisine personnalisées. L’application, nommée ChefBot, permet
+de générer automatiquement des recettes complètes à partir des ingrédients
+disponibles, d’améliorer des recettes existantes, de proposer une liste d’ingrédients
+manquants, de fournir des conseils culinaires adaptés et d’offrir une lecture audio des
+recettes.
+L’objectif principal de ChefBot est de proposer une interface simple, intuitive et
+moderne permettant à l’utilisateur de transformer les ingrédients dont il dispose en une
+recette réaliste, exploitable et personnalisée, tout en s’adaptant à ses préférences
+alimentaires.
+\clearpage
+\section{Environnement de travail}
+Dans un premier temps, nous avons réfléchi à l’environnement de développement le
+plus adapté à la réalisation de notre projet ChefBot, qui repose sur une application web
+moderne intégrant une intelligence artificielle générative. Il était essentiel de choisir
+des outils à la fois performants, flexibles et adaptés au développement d’applications
+web récentes.
+Après analyse, nous avons opté pour Visual Studio Code, un éditeur de code largement
+utilisé dans le développement web, offrant une grande compatibilité avec les
+technologies que nous souhaitions utiliser. Cet environnement nous a permis de
+travailler efficacement grâce à ses nombreuses extensions, son terminal intégré et sa
+bonne gestion des projets JavaScript et TypeScript.
+4
+Le projet a été développé sur un PC sous Windows 11, en utilisant les langages
+JavaScript et TypeScript, ainsi que le framework Next.js 14, basé sur React et
+l’architecture App Router. Pour la gestion de l’interface et du design, nous avons utilisé
+Tailwind CSS, qui permet de créer des interfaces modernes, responsives et lisibles de
+manière rapide et structurée.
+La logique côté serveur a été gérée à l’aide des API Routes de Next.js, qui assurent la
+communication entre le front-end et l’API d’intelligence artificielle Google Gemini. Les
+tests de l’application ont été réalisés principalement sur le navigateur Google Chrome,
+afin de vérifier le bon fonctionnement de l’interface et des fonctionnalités.
+Cette combinaison d’outils et de technologies nous a permis de développer une
+application fluide, cohérente et facile à maintenir, tout en répondant aux exigences
+techniques du projet ChefBot.
+
+\clearpage
+
+\section{Description du projet et objectifs}
+\subsection{Objectif générale}
+Avant de commencer le développement de ChefBot, nous avons défini l’objectif principal
+du projet afin de guider l’ensemble de sa conception. L’objectif général de ChefBot est
+d’assister l’utilisateur dans la création de recettes de cuisine personnalisées à l’aide
+d’une intelligence artificielle générative.
+L’application permet à l’utilisateur de saisir les ingrédients dont il dispose, accompagnés
+de leurs quantités, afin de générer automatiquement une recette complète, réaliste et
+exploitable. ChefBot prend également en compte différents modes alimentaires, tels que
+le mode standard, healthy, riche en protéines ou végétarien, afin de s’adapter aux
+besoins et préférences de chacun.
+En plus de la génération de recettes, ChefBot propose des améliorations de plats
+existants, une liste des ingrédients manquants à acheter ainsi que des conseils
+culinaires adaptés. L’objectif est de se rapprocher d’un usage réel en cuisine, en offrant
+une aide concrète, simple et intuitive, tout en optimisant l’organisation des repas et en
+réduisant le manque d’inspiration culinaire.
+
+\subsection{B. Public visée}
+ChefBot s’adresse à un public large, mais vise en priorité les personnes recherchant une
+solution simple et rapide pour cuisiner sans planification complexe. Le public ciblé est
+principalement composé :
+●
+des étudiants, disposant de peu de temps et d’un budget limité ;
+●
+des personnes vivant seules, souhaitant optimiser leurs repas avec les
+ingrédients disponibles ;
+●
+de toute personne désirant cuisiner facilement, sans connaissances culinaires
+avancées.
+Grâce à son interface claire et accessible, ChefBot est conçu pour être utilisé par tous
+les profils, quel que soit le niveau en cuisine ou en informatique. L’objectif est de rendre
+la préparation des repas plus simple, plus efficace et plus agréable au quotidien.
+
+\subsection{C. Description du projet}
+Le cœur de notre projet repose sur une interface interactive dans laquelle l’utilisateur
+saisit les ingrédients dont il dispose, accompagnés de leurs quantités. Ces informations
+sont ensuite envoyées à une route API interne développée avec Next.js, qui se charge de
+formuler un prompt structuré destiné à l’intelligence artificielle. À partir de ces
+données, l’IA génère une recette complète et adaptée aux éléments fournis par
+l’utilisateur.
+L’application permet également de sélectionner un mode alimentaire spécifique
+(standard, healthy, riche en protéines ou végétarien), afin d’affiner la génération de la
+recette. En complément, ChefBot propose une version améliorée de la recette générée,
+une liste des ingrédients manquants à acheter ainsi que des conseils culinaires
+personnalisés pour optimiser la préparation du plat.
+Enfin, une fonctionnalité de lecture audio permet à l’utilisateur d’écouter la recette
+étape par étape, facilitant ainsi son utilisation en situation réelle de cuisine. L’interface
+de ChefBot se veut conviviale, moderne et simple d’utilisation, tout en restant accessible
+sur différents navigateurs et supports. Le design épuré met en valeur les informations
+essentielles et contribue à offrir une expérience fluide et agréable à l’utilisateur.
+
+\clearpage
+
+\section{Bibliothèques, outils et technologies}
+
+\subsubsection*{A. Back END}
+Pour la partie back-end du projet ChefBot, nous avons utilisé les API Routes de Next.js
+14, qui permettent de créer des endpoints côté serveur et de gérer la communication
+entre le front-end et l’intelligence artificielle. Ces routes assurent le traitement des
+données envoyées par l’utilisateur et la transmission des résultats générés vers
+l’interface.
+L’interaction avec l’intelligence artificielle est réalisée grâce à la bibliothèque
+@google/generative-ai, permettant de communiquer avec l’API Google Gemini. Cette
+dernière est utilisée pour générer des recettes culinaires structurées à partir des
+ingrédients fournis. Le back-end veille également à la structuration des réponses au
+format JSON, garantissant ainsi une exploitation fiable et cohérente des données par le
+front-end.
+
+\subsubsection*{B. Front END}
+Pour la partie front-end du projet ChefBot, nous avons utilisé le framework React,
+intégré à Next.js 14 à travers l’architecture App Router. Ce choix nous a permis de
+structurer l’application sous forme de composants réutilisables et de gérer efficacement
+l’affichage dynamique des données. React facilite la mise à jour de l’interface en fonction
+des interactions de l’utilisateur, ce qui est essentiel pour l’affichage des recettes
+générées, des conseils culinaires et des différentes options proposées par l’application.
+La mise en forme de l’interface utilisateur a été réalisée à l’aide de Tailwind CSS. Cette
+bibliothèque utilitaire nous a permis de concevoir une interface moderne, responsive et
+orientée vers la lisibilité. Grâce à Tailwind CSS, nous avons pu adapter l’affichage de
+l’application à différents formats d’écran tout en conservant une cohérence visuelle et
+une navigation fluide.
+Enfin, nous avons intégré la Web Speech API afin d’ajouter une fonctionnalité de lecture
+audio des recettes. Cette API permet de convertir le texte généré par l’intelligence
+artificielle en audio, offrant ainsi à l’utilisateur la possibilité d’écouter les étapes de la
+recette. Des contrôles tels que la lecture, la pause, la reprise et l’arrêt ont été mis en
+place afin d’améliorer l’expérience utilisateur, notamment lors de l’utilisation de
+l’application en situation réelle de cuisine.
+
+\subsubsection*{C. API utilisée}
+Dans le cadre du projet ChefBot, nous avons utilisé la Google Gemini API afin d’intégrer
+une intelligence artificielle générative au sein de l’application. Cette API permet
+d’interagir avec des modèles de langage avancés capables de comprendre des
+instructions complexes et de générer du contenu textuel structuré.
+Le modèle utilisé est gemini-2.0-flash, choisi pour sa rapidité d’exécution et sa capacité
+à produire des réponses cohérentes et pertinentes en un temps réduit. Ce modèle est
+particulièrement adapté à un usage interactif, où l’utilisateur attend une génération de
+contenu quasi immédiate après la saisie de ses informations.
+Le rôle principal de cette API est la génération de contenu culinaire structuré. À partir
+des ingrédients et des quantités fournis par l’utilisateur, l’intelligence artificielle est
+capable de proposer une recette complète, incluant les étapes de préparation, des
+conseils culinaires, ainsi qu’une liste des ingrédients manquants. L’utilisation de l’API
+Gemini constitue ainsi le cœur intelligent de ChefBot et permet de rendre l’application
+réellement fonctionnelle et personnalisée.
+
+
+
+
+\section{ Fonctionnement de l’intelligence artificielles et
+technologies}
+L’intelligence artificielle intégrée au projet ChefBot repose sur un modèle de type LLM
+(Large Language Model), capable de générer du contenu textuel structuré à partir
+d’instructions précises.
+Le fonctionnement de l’IA s’effectue selon un processus en plusieurs étapes. Tout
+d’abord, l’utilisateur saisit les ingrédients dont il dispose ainsi que leurs quantités via
+l’interface de l’application. Ces informations sont ensuite transmises à une route API
+interne, où un prompt structuré est automatiquement généré côté serveur. Ce prompt
+est envoyé à l’API Gemini, qui traite la demande et renvoie une réponse respectant un
+format JSON strict. Enfin, le front-end exploite ces données afin d’afficher la recette
+générée, les étapes de préparation et les conseils culinaires associés.
+L’intelligence artificielle n’enregistre aucune donnée personnelle ou information saisie
+par l’utilisateur, garantissant ainsi le respect de la confidentialité et de la vie privée.
+
+\section{ Utilisation de l’IA dans la réalisation du projet}
+L’intelligence artificielle a également été utilisée comme outil d’assistance au
+développement tout au long de la réalisation du projet ChefBot. Elle a notamment
+permis de faciliter la génération de composants React, d’aider à la résolution d’erreurs
+techniques rencontrées lors du développement et d’optimiser la logique générale de
+l’application.
+De plus, l’IA a été utilisée pour améliorer la conception des prompts culinaires, afin
+d’obtenir des réponses plus pertinentes et mieux structurées. Elle a également
+contribué à la structuration des réponses au format JSON, garantissant une meilleure
+fiabilité dans l’échange de données entre le back-end et le front-end.
+
+\section{ Travail réalisé}
+Au cours de ce projet, plusieurs fonctionnalités ont été mises en œuvre afin de répondre
+aux objectifs définis. L’application permet la génération automatique de recettes à
+partir des ingrédients disponibles, tout en prenant en compte les quantités saisies par
+l’utilisateur. Différents modes alimentaires ont été intégrés, notamment les modes
+standard, healthy/light, high protein et végétarien, afin d’adapter les recettes aux
+préférences et aux contraintes alimentaires.
+L’application propose également une version améliorée des recettes, une liste des
+ingrédients manquants à acheter, ainsi que des conseils culinaires personnalisés. Une
+fonctionnalité de lecture audio des recettes a été ajoutée, permettant à l’utilisateur de
+lancer, mettre en pause, reprendre ou arrêter la lecture. Enfin, une interface moderne
+et responsive a été développée afin d’assurer une utilisation confortable sur différents
+supports.
+Certaines fonctionnalités n’ont toutefois pas été réalisées dans le cadre de ce projet. Il
+s’agit notamment de l’authentification des utilisateurs, de la mise en place d’un
+historique persistant des recettes, ainsi que du stockage des données en base de
+données.
+
+
+
+
+\section{Difficultés rencontrées}
+Au cours du développement du projet, plusieurs difficultés techniques ont été
+rencontrées. La gestion des quotas de l’API Google Gemini a nécessité une
+attention particulière afin d’éviter les limitations lors des phases de test. La
+fiabilité du format JSON retourné par l’intelligence artificielle a également posé
+problème, ce qui a conduit à renforcer la structuration des réponses générées.
+Par ailleurs, la gestion de la lecture audio, notamment les fonctionnalités de
+pause et d’arrêt, a demandé des ajustements afin d’assurer un fonctionnement
+stable. Enfin, la stabilisation du flux de navigation entre les différentes pages
+de l’application a nécessité plusieurs corrections. L’ensemble de ces difficultés a
+été progressivement résolu grâce à des tests réguliers et à une structuration
+rigoureuse du code.
+\section{Mise en fonctionnement de l’application}
+Afin de mettre en fonctionnement l’application ChefBot, certains prérequis
+techniques sont nécessaires. Il est indispensable de disposer de Node.js (version
+18 ou supérieure) ainsi que d’une clé API Google Gemini valide.
+L’installation des dépendances du projet s’effectue à l’aide de la commande npm
+install. Une fois l’installation terminée, une phase de configuration est
+requise. Pour cela, il convient de créer un fichier .env.local à la racine du projet
+et d’y renseigner la clé API Gemini selon le format suivant :
+GEMINI_API_KEY=VOTRE_CLE_API.
+Enfin, l’application peut être lancée à l’aide de la commande npm run fois le serveur démarré, l’accès à l’application se fait via l’adresse suivante :
+dev. Une
+http:/ /localhost:3000.
+
+\section{ Conclusion et perspectives}
+ChefBot est une application qui illustre l’intégration efficace d’une intelligence
+artificielle générative au sein d’un projet web moderne. Ce projet a permis de mettre en
+œuvre des technologies actuelles telles que Next.js, React et l’API Google Gemini, tout
+en proposant une solution utile et concrète répondant à un besoin du quotidien.
+L’application offre une expérience utilisateur intuitive et démontre le potentiel de l’IA
+dans l’assistance culinaire personnalisée.
+Plusieurs axes d’amélioration peuvent être envisagés pour faire évoluer l’application. Il
+serait notamment possible d’ajouter un historique des recettes, une fonctionnalité
+d’export au format PDF, ainsi qu’une estimation nutritionnelle des plats générés.
+L’intégration de la génération d’images culinaires permettrait d’enrichir davantage
+l’expérience utilisateur, tandis qu’un mode hors ligne basé sur des données simulées
+pourrait améliorer l’accessibilité de l’application.
+
+\section{ Bibliographie}
+•Documentation Next.js
+
+•Documentation Google Gemini API
+
+•Documentation Tailwind CSS
+
+\section{ Webographie}
+•https:/ /nextjs.org
+
+•https:/ /ai.google.dev
+
+•https:/ /tailwindcss.com
+
+\section{ Annexes}
+
+
+
+
+\subsection{Cahier des charges}
+●Le cahier des charges définit les objectifs et les fonctionnalités principales de l’application ChefBot. Il inclut :
+
+La description des fonctionnalités attendues, détaillant le rôle de chaque
+module de l’application.
+
+●Les maquettes de l’interface, présentant la structure des différentes pages et
+l’agencement des éléments pour assurer une expérience utilisateur intuitive et
+cohérente.
+
+
+
+\subsection{Exemples d’exécution et de prompt}
+exemple discussion prompt avec l’intelligence artificielle :
+Plusieurs exemples illustrent le fonctionnement concret de l’application :
+
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{Capture d’écran 2026-01-05 à 12.50.17.png}
+\caption{l'utilisateur rentre ici les ingrédients et le régime alimentaire souhaité}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{Capture d’écran 2026-01-05 à 12.52.24.png}
+\caption{la recette est générée }
+\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{Capture d’écran 2026-01-05 à 12.47.30.png}
+\caption{possibilité de se faire dictée la recette et de mettre en pause}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{IMG_3917.PNG}
+\caption{prompt}
+\end{minipage}
+\end{figure}
+
+●Génération de recette : création automatique d’une recette à partir des
+ingrédients saisis par l’utilisateur.
+●Amélioration de recette : proposition de variantes ou d’optimisations pour
+enrichir la recette initiale.
+
+●Liste des ingrédients à acheter : identification des ingrédients manquants
+nécessaires à la réalisation complète de la recette.
+
+\subsection{Manuel utilisateur}
+Le manuel utilisateur présente les étapes pour exploiter pleinement ChefBot :
+1. Saisir les ingrédients disponibles ainsi que leurs quantités.
+2. Choisir le mode alimentaire correspondant aux préférences ou contraintes
+personnelles.
+3. Générer la recette automatiquement.
+4. Écouter la recette via la fonctionnalité audio ou appliquer les suggestions
+d’amélioration proposées par l’application.
+
+
+
+\end{document}
+
